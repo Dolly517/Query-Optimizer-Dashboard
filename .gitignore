@@ -1,0 +1,9 @@
+node_modules/
+logs/
+*.log
+.env
+.env.local
+dist/
+.DS_Store
+*.pid
+*.seed
