@@ -6,11 +6,6 @@
 - **Tech Stack**: React + Vite + Tailwind CSS (frontend) + Node.js + Express (backend)
 - **AI Engine**: Rule-based, zero API cost
 
-## Live URLs
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:4000/api/analyze
-- **Health Check**: http://localhost:4000/api/health
-
 ## Features Implemented
 - ✅ SQL query paste and syntax-highlighted editor
 - ✅ Database schema input for deep index analysis
