@@ -22,6 +22,7 @@ GROUP BY c.id;`
 // SAMPLE_SCHEMA removed — schema UI disabled per user request
 
 export default function Analyzer() {
+  const base = import.meta.env.VITE_API_URL || ''
   const [query, setQuery] = useState('')
   const [schema, setSchema] = useState('')
   const [result, setResult] = useState(null)
@@ -42,7 +43,8 @@ export default function Analyzer() {
     setError(null)
     setResult(null)
     try {
-      const { data } = await axios.post('/api/analyze', { query, schema })
+      const url = `${base}/api/analyze`.replace(/([^:]\/)\//g, '$1')
+      const { data } = await axios.post(url, { query, schema })
       setResult(data)
     } catch (err) {
       setError(err.response?.data?.error || 'Analysis failed. Please try again.')
@@ -61,7 +63,8 @@ export default function Analyzer() {
     formData.append('file', file)
     try {
       setLoading(true)
-      const { data } = await axios.post('/api/parse-sql-file', formData, {
+      const url = `${base}/api/parse-sql-file`.replace(/([^:]\/)\//g, '$1')
+      const { data } = await axios.post(url, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       if (data.query) setQuery(data.query)
