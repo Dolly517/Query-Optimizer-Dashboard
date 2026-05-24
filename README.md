@@ -5,7 +5,8 @@
 - **Goal**: AI-powered SQL query analyzer that detects performance issues, recommends indexes, and generates optimized queries
 - **Tech Stack**: React + Vite + Tailwind CSS (frontend) + Node.js + Express (backend)
 - **AI Engine**: Rule-based, zero API cost
-
+## Live link
+- https://query-optimizer-dashboard.vercel.app/
 ## Features Implemented
 - ✅ SQL query paste and syntax-highlighted editor
 - ✅ Database schema input for deep index analysis
