@@ -22,7 +22,15 @@ GROUP BY c.id;`
 // SAMPLE_SCHEMA removed — schema UI disabled per user request
 
 export default function Analyzer() {
-  const base = import.meta.env.VITE_API_URL || ''
+  // Use VITE_API_URL if provided at build time. If missing in production
+  // (common when env wasn't set on Vercel), fall back to the known Render
+  // backend URL so the static site can still call the API.
+  const RENDER_BACKEND = 'https://query-optimizer-dashboard-1.onrender.com'
+  const base = import.meta.env.VITE_API_URL || (
+    typeof window !== 'undefined' && window.location.hostname.endsWith('vercel.app')
+      ? RENDER_BACKEND
+      : ''
+  )
   const [query, setQuery] = useState('')
   const [schema, setSchema] = useState('')
   const [result, setResult] = useState(null)
