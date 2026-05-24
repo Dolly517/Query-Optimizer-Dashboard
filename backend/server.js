@@ -9,9 +9,10 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-app.use(cors());
+// Allow configuring allowed origin via environment variable (set this to your Vercel URL)
+const allowedOrigin = process.env.ALLOWED_ORIGIN || '*';
+app.use(cors({ origin: allowedOrigin }));
 app.use(express.json({ limit: "5mb" }));
-
 // ─────────────────────────────────────────────
 // QueryMind AI - Stable Rule-Based SQL Agent
 // ─────────────────────────────────────────────

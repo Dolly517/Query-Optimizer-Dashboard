@@ -42,8 +42,7 @@ export default function Analyzer() {
     setError(null)
     setResult(null)
     try {
-      const base = import.meta.env.VITE_API_URL || ''
-      const { data } = await axios.post(`${base}/api/analyze`, { query, schema })
+      const { data } = await axios.post('/api/analyze', { query, schema })
       setResult(data)
     } catch (err) {
       setError(err.response?.data?.error || 'Analysis failed. Please try again.')
@@ -62,8 +61,7 @@ export default function Analyzer() {
     formData.append('file', file)
     try {
       setLoading(true)
-      const base = import.meta.env.VITE_API_URL || ''
-      const { data } = await axios.post(`${base}/api/parse-sql-file`, formData, {
+      const { data } = await axios.post('/api/parse-sql-file', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       if (data.query) setQuery(data.query)
